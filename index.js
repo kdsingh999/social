@@ -1,8 +1,14 @@
 const express = require('express');
 const app = express();
 const router = require('./routes/index');
+const expressLayouts = require('express-ejs-layouts');
 const port = 8000;
 
+app.use(expressLayouts);
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
+
+app.use(express.static('./assets'));
 //express router
 app.use('/', router);
 
