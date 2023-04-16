@@ -1,0 +1,31 @@
+<div class="container">
+  <form class="row mx-5" action="/users/createSession" method="POST">
+    <div style="max-width: 400px; border: 1px solid red" class="mx-auto">
+      <h2 class="my-5">Sign In Here</h2>
+      <div class="col-12">
+        <label for="staticEmail2" class="visually-hidden">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          name="email"
+          id="staticEmail2"
+          placeholder="Enter Your Email"
+        />
+      </div>
+
+      <div class="col-12 mt-3">
+        <label for="inputPassword2" class="visually-hidden">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="inputPassword2"
+          placeholder="Password"
+          name="password"
+        />
+      </div>
+      <div class="col-12 my-5">
+        <button type="submit" class="btn btn-primary mb-3">Sign In</button>
+      </div>
+    </div>
+  </form>
+</div>
