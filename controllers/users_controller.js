@@ -1,9 +1,18 @@
 const User = require('../models/user');
 
-module.exports.profile = (req, res) => {
-  return res.render('profile', {
-    title: 'profile',
-  });
+module.exports.profile = async (req, res) => {
+  if (req.cookies.user_id) {
+    const user = await User.findById(req.cookies.user_id);
+    if (user) {
+      return res.render('profile', {
+        title: 'User Profile',
+        user,
+      });
+    }
+    return res.redirect('/users/signin');
+  } else {
+    return res.redirect('/users/signin');
+  }
 };
 
 module.exports.signup = (req, res) => {
@@ -37,7 +46,23 @@ module.exports.create = async (req, res) => {
   }
 };
 
-module.exports.createSession = (req, res) => {
+module.exports.createSession = async (req, res) => {
   try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (user) {
+      if (password == user.password) {
+        res.cookie('user_id', user._id);
+        return res.redirect('/users/profile');
+      } else {
+        return res
+          .send({ status: 401, mess: 'username or password wrong' })
+          .redirect('back');
+      }
+    } else {
+      return res
+        .send({ status: 401, mess: 'username or password wrong' })
+        .redirect('back');
+    }
   } catch (error) {}
 };
