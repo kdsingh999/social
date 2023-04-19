@@ -2,6 +2,9 @@
   <head>
     <title><%= title%></title>
     <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -11,7 +14,9 @@
     <%-style%>
   </head>
   <body>
-    <%- include('_header');-%> <%- body%> <%- include('_footer');-%> <%-script%>
+    <%- include('_header');-%>
+    <main id="layout-main"><%- body%></main>
+    <%- include('_footer');-%> <%-script%>
   </body>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

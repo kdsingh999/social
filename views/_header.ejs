@@ -1,1 +1,31 @@
-<header>Header</header>
+<header>
+  <div class="header container-fluid">
+    <div>
+      <div class="logo">SocialMedia</div>
+    </div>
+    <div class="nav">
+      <ul class="d-flex justify-content-center list-unstyled fs-3">
+        <% if (locals.user){ %>
+        <li>
+          <a class="badge text-decoration-none" href="/users/profile"
+            ><%=locals.user.name%></a
+          >
+        </li>
+        <li>
+          <a href="/users/signout" class="badge text-decoration-none"
+            >Sign Out <i class="fa fa-outdent" aria-hidden="true"></i
+          ></a>
+        </li>
+        <%}else{%>
+        <li>
+          <a class="badge text-decoration-none" href="/users/signin">Sign In</a>
+        </li>
+        <li>
+          <a class="badge text-decoration-none" href="/users/signup">Sign Up</a>
+        </li>
+
+        <%}%>
+      </ul>
+    </div>
+  </div>
+</header>
