@@ -2,8 +2,46 @@
 
 <section id="feed-posts">
   <h4>Posts</h4>
-  <form action="" id="new-post-form" method="POST">
-    <textarea name="content" cols="30" rows="3"></textarea>
+  <% if (locals.user){%>
+  <form action="/post/create" id="new-post-form" method="POST">
+    <textarea
+      name="content"
+      cols="30"
+      rows="3"
+      placeholder="Type here...."
+    ></textarea>
     <input type="submit" value="Post" />
   </form>
+  <%}%>
+</section>
+
+<section>
+  <ul>
+    <% for (post of posts ) { %>
+    <div class="border">
+      <a href="/users/profile"><%=post.user.name%></a>
+      <li><%= post.content%></li>
+      <div class="post-cpmments">
+        <% if (locals.user){%>
+        <form action="/comments/create" method="POST">
+          <input name="content" type="text" placeholder="comment here" />
+          <input type="hidden" name="post" value="<%= post._id%>" />
+          <input type="submit" value="Add Comment" />
+        </form>
+        <%}%>
+
+        <div>
+          <ul>
+            <% for (comment of post.comments){%>
+            <li><%=comment.content%></li>
+            <small><%=comment.user.name%></small>
+
+            <%}%>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <% }%>
+  </ul>
 </section>
